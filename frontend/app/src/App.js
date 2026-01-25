@@ -18,7 +18,7 @@ function App() {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus("Saved successfully");
+        setStatus("Saved successfullyy");
         setMessage("");
       } else {
         setStatus(data.error || "Failed to save");
