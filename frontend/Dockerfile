@@ -13,14 +13,11 @@ RUN npm run build
 #stage 2 run
 FROM nginx:alpine
 
-#remove default nginx config
-RUN  rm /etc/nginx/conf.d/default.conf
+# Remove default config
+RUN rm /etc/nginx/conf.d/default.conf
 
-#copy our custom nginx config
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-#copy built react files from builder stage 
-COPY --from=builder /app/build /usr/share/nginx/html
+# Copy template to the official templates directory
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
 EXPOSE 80
  
