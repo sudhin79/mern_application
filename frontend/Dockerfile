@@ -16,6 +16,8 @@ FROM nginx:alpine
 # Remove default config
 RUN rm /etc/nginx/conf.d/default.conf
 
+copy --from=build /app/build /usr/share/nginx/html
+
 # Copy template to the official templates directory
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
