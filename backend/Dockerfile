@@ -1,9 +1,15 @@
 FROM node:18-alpine
-RUN apk update && apk upgrade
+
+# 🔐 Force security updates (THIS IS THE KEY LINE)
+RUN apk update && apk upgrade --no-cache
+
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm install --production
-COPY server.js .
+
+COPY . .
+
 EXPOSE 5003
-ENTRYPOINT ["node"]
-CMD ["server.js"]
+
+CMD ["node", "server.js"]
