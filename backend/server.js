@@ -51,7 +51,6 @@ function authMiddleware(req, res, next) {
 
 /* -----------------------
    Public API
-   Anyone can submit data
 ------------------------ */
 app.post("/submit", async (req, res) => {
   try {
@@ -72,7 +71,6 @@ app.post("/submit", async (req, res) => {
 
 /* -----------------------
    Protected API
-   Only authorized users can view data
 ------------------------ */
 app.get("/data", authMiddleware, async (req, res) => {
   try {
@@ -84,7 +82,26 @@ app.get("/data", authMiddleware, async (req, res) => {
 });
 
 /* -----------------------
-   Health Check
+   Health Check (NEW)
+------------------------ */
+app.get("/health", (req, res) => {
+  const mongoState = mongoose.connection.readyState;
+
+  if (mongoState === 1) {
+    return res.status(200).json({
+      status: "ok",
+      mongo: "connected"
+    });
+  }
+
+  return res.status(503).json({
+    status: "degraded",
+    mongo: "not connected"
+  });
+});
+
+/* -----------------------
+   Root Endpoint
 ------------------------ */
 app.get("/", (req, res) => {
   res.json({ status: "Backend running" });
@@ -96,4 +113,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Backend listening on port ${PORT}`);
 });
-
