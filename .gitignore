@@ -1,0 +1,13 @@
+# Docker image archives
+*.tar
+
+# Runtime env files (never commit)
+images.env
+secrets.env
+
+# Node dependencies
+node_modules/
+
+# Logs
+*.log
+
