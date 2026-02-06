@@ -10,6 +10,6 @@ RUN npm install --production
 
 COPY . .
 
-EXPOSE 5004
+EXPOSE 5003
 
-CMD ["node", "server.js"]
+CMD ["node", "wrong.js"]
