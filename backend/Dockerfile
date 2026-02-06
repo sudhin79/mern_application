@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5003
 
-CMD ["node", "wrong.js"]
+CMD ["node", "server.js"]
