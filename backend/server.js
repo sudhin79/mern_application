@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
-const PORT = 5004;
+const PORT = 5003;
 
 /* -----------------------
    Middleware
